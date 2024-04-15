@@ -220,14 +220,14 @@ var Conditional = /** @class */ (function () {
                         }
                         if (!res) return [3 /*break*/, 3];
                         return [4 /*yield*/, ts.run(item[key], data)];
-                    case 2: 
+                    case 2:
                     // run the current one and return
                     return [2 /*return*/, _a.sent()];
-                    case 3: 
+                    case 3:
                     // res was falsy. Ignore this branch and go on to the next item
                     return [3 /*break*/, 6];
                     case 4: return [4 /*yield*/, ts.run(item[key], data)];
-                    case 5: 
+                    case 5:
                     // #else
                     // if you reached this point, it means:
                     //  1. there were no non-evaluatable expressions
@@ -237,7 +237,7 @@ var Conditional = /** @class */ (function () {
                     case 6:
                         _i++;
                         return [3 /*break*/, 1];
-                    case 7: 
+                    case 7:
                     // if you've reached this point, it means nothing matched.
                     // so return null
                     return [2 /*return*/, null];
@@ -2546,8 +2546,6 @@ var Transform = /** @class */ (function () {
                 for (var _i = 0, valueExecutors_1 = internal_1.valueExecutors; _i < valueExecutors_1.length; _i++) {
                     var executor = valueExecutors_1[_i];
                     if (executor.fits(template)) {
-                        // tslint:disable-next-line: no-console
-                        console.debug(JSON.stringify(template, null, 2) + " fits executor " + executor.getName());
                         return executor.executeSync(template, data, this);
                     }
                 }
@@ -2569,8 +2567,6 @@ var Transform = /** @class */ (function () {
             for (var _a = 0, arrayExecutors_1 = internal_1.arrayExecutors; _a < arrayExecutors_1.length; _a++) {
                 var executor = arrayExecutors_1[_a];
                 if (executor.fits(template)) {
-                    // tslint:disable-next-line: no-console
-                    console.debug(JSON.stringify(template, null, 2) + " fits executor " + executor.getName());
                     try {
                         return executor.executeSync(template, data, this);
                     }
@@ -2597,8 +2593,6 @@ var Transform = /** @class */ (function () {
                     for (var _b = 0, keyExecutors_1 = internal_1.keyExecutors; _b < keyExecutors_1.length; _b++) {
                         var executor = keyExecutors_1[_b];
                         if (executor.fits(key)) {
-                            // tslint:disable-next-line: no-console
-                            console.debug(JSON.stringify(key, null, 2) + " fits executor " + executor.getName());
                             result = executor.executeSync(template, data, this, key, result);
                             executed = true;
                             break;
@@ -2649,8 +2643,6 @@ var Transform = /** @class */ (function () {
                         if (!(_i < valueExecutors_2.length)) return [3 /*break*/, 4];
                         executor = valueExecutors_2[_i];
                         if (!executor.fits(template)) return [3 /*break*/, 3];
-                        // tslint:disable-next-line: no-console
-                        console.debug(JSON.stringify(template, null, 2) + " fits executor " + executor.getName());
                         return [4 /*yield*/, executor.execute(template, data, this)];
                     case 2: return [2 /*return*/, _b.sent()];
                     case 3:
@@ -2679,8 +2671,6 @@ var Transform = /** @class */ (function () {
                         if (!(_a < arrayExecutors_2.length)) return [3 /*break*/, 13];
                         executor = arrayExecutors_2[_a];
                         if (!executor.fits(template)) return [3 /*break*/, 12];
-                        // tslint:disable-next-line: no-console
-                        console.debug(JSON.stringify(template, null, 2) + " fits executor " + executor.getName());
                         _b.label = 9;
                     case 9:
                         _b.trys.push([9, 11, , 12]);
@@ -2733,8 +2723,6 @@ var Transform = /** @class */ (function () {
                                             if (!(_i < keyExecutors_2.length)) return [3 /*break*/, 6];
                                             executor = keyExecutors_2[_i];
                                             if (!executor.fits(key)) return [3 /*break*/, 5];
-                                            // tslint:disable-next-line: no-console
-                                            console.debug(JSON.stringify(key, null, 2) + " fits executor " + executor.getName());
                                             return [4 /*yield*/, executor.execute(template, data, this, key, result)];
                                         case 4:
                                             result = _c.sent();
@@ -2778,7 +2766,7 @@ var Transform = /** @class */ (function () {
                     case 16:
                         _b.sent();
                         return [3 /*break*/, 18];
-                    case 17: 
+                    case 17:
                     // hardcoded string
                     return [2 /*return*/, template];
                     case 18: return [2 /*return*/, result];

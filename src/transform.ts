@@ -40,14 +40,6 @@ export class Transform {
 
         for (const executor of valueExecutors) {
           if (executor.fits(template)) {
-            // tslint:disable-next-line: no-console
-            console.debug(
-              `${JSON.stringify(
-                template,
-                null,
-                2,
-              )} fits executor ${executor.getName()}`,
-            );
             return executor.executeSync(template, data, this);
           }
         }
@@ -67,14 +59,6 @@ export class Transform {
     if (Helper.isArray(template)) {
       for (const executor of arrayExecutors) {
         if (executor.fits(template as Array<any>)) {
-          // tslint:disable-next-line: no-console
-          console.debug(
-            `${JSON.stringify(
-              template,
-              null,
-              2,
-            )} fits executor ${executor.getName()}`,
-          );
           try {
             return executor.executeSync(template as Array<any>, data, this);
           } catch (error) {
@@ -101,14 +85,6 @@ export class Transform {
           let executed = false;
           for (const executor of keyExecutors) {
             if (executor.fits(key)) {
-              // tslint:disable-next-line: no-console
-              console.debug(
-                `${JSON.stringify(
-                  key,
-                  null,
-                  2,
-                )} fits executor ${executor.getName()}`,
-              );
               result = executor.executeSync(template, data, this, key, result);
               executed = true;
               break;
@@ -149,14 +125,6 @@ export class Transform {
 
         for (const executor of valueExecutors) {
           if (executor.fits(template)) {
-            // tslint:disable-next-line: no-console
-            console.debug(
-              `${JSON.stringify(
-                template,
-                null,
-                2,
-              )} fits executor ${executor.getName()}`,
-            );
             return await executor.execute(template, data, this);
           }
         }
@@ -176,14 +144,6 @@ export class Transform {
     if (Helper.isArray(template)) {
       for (const executor of arrayExecutors) {
         if (executor.fits(template as Array<any>)) {
-          // tslint:disable-next-line: no-console
-          console.debug(
-            `${JSON.stringify(
-              template,
-              null,
-              2,
-            )} fits executor ${executor.getName()}`,
-          );
           try {
             return await executor.execute(template as Array<any>, data, this);
           } catch (error) {
@@ -222,14 +182,6 @@ export class Transform {
 
               for (const executor of keyExecutors) {
                 if (executor.fits(key)) {
-                  // tslint:disable-next-line: no-console
-                  console.debug(
-                    `${JSON.stringify(
-                      key,
-                      null,
-                      2,
-                    )} fits executor ${executor.getName()}`,
-                  );
                   result = await executor.execute(
                     template,
                     data,
