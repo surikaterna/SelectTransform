@@ -1,11 +1,11 @@
 {
-  "name": "selecttransform",
+  "name": "@surikaterna/selecttransform",
   "version": "1.6.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JakubMifek/SelectTransform.git"
+    "url": "git+https://github.com/surikaterna/SelectTransform.git"
   },
   "keywords": [
     "stjs",
@@ -21,12 +21,8 @@
     "mapping",
     "template"
   ],
-  "author": "Jakub Mifek",
+  "author": "Surikat",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/JakubMifek/SelectTransform/issues"
-  },
-  "homepage": "https://github.com/JakubMifek/SelectTransform#readme",
   "scripts": {
     "lint": "tslint -c './tslint.json' './src/**/*.ts'",
     "clean": "rm -rf *.tgz dist",
