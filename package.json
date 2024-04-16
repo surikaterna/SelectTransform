@@ -1,6 +1,6 @@
 {
   "name": "@surikaterna/selecttransform",
-  "version": "1.6.1",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -25,7 +25,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "tslint -c './tslint.json' './src/**/*.ts'",
-    "clean": "rm -rf *.tgz dist",
+    "clean": "del *.tgz  rmdir /s /q dist ",
     "build": "npm run clean && tsc --outDir dist && npm run browsify",
     "browsify": "browserify browser.js > st.js",
     "prepare": "npm run build",

@@ -220,14 +220,14 @@ var Conditional = /** @class */ (function () {
                         }
                         if (!res) return [3 /*break*/, 3];
                         return [4 /*yield*/, ts.run(item[key], data)];
-                    case 2:
+                    case 2: 
                     // run the current one and return
                     return [2 /*return*/, _a.sent()];
-                    case 3:
+                    case 3: 
                     // res was falsy. Ignore this branch and go on to the next item
                     return [3 /*break*/, 6];
                     case 4: return [4 /*yield*/, ts.run(item[key], data)];
-                    case 5:
+                    case 5: 
                     // #else
                     // if you reached this point, it means:
                     //  1. there were no non-evaluatable expressions
@@ -237,7 +237,7 @@ var Conditional = /** @class */ (function () {
                     case 6:
                         _i++;
                         return [3 /*break*/, 1];
-                    case 7:
+                    case 7: 
                     // if you've reached this point, it means nothing matched.
                     // so return null
                     return [2 /*return*/, null];
@@ -2766,7 +2766,7 @@ var Transform = /** @class */ (function () {
                     case 16:
                         _b.sent();
                         return [3 /*break*/, 18];
-                    case 17:
+                    case 17: 
                     // hardcoded string
                     return [2 /*return*/, template];
                     case 18: return [2 /*return*/, result];
