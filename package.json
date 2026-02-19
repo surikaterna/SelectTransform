@@ -1,6 +1,6 @@
 {
   "name": "selecttransform-surikaterna",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -24,8 +24,7 @@
   "author": "Surikat",
   "license": "MIT",
   "scripts": {
-    "lint": "tslint -c './tslint.json' './src/**/*.ts'",
-    "clean": "del *.tgz  rmdir /s /q dist ",
+    "clean": "rimraf *.tgz  rmdir /s /q dist ",
     "build": "npm run clean && tsc --outDir dist && npm run browsify",
     "browsify": "browserify browser.js > st.js",
     "prepare": "npm run build",
@@ -33,19 +32,14 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/preset-env": "^7.5.4",
-    "@babel/preset-typescript": "^7.3.3",
-    "@types/node": "^11.13.4",
-    "babel-jest": "^26.6.3",
-    "jest": "^26.6.3",
-    "prettier": "^2.0.5",
-    "ts-jest": "^26.5.5",
-    "browserify": "^17.0.0",
-    "eslint": "^7.25.0",
+    "@types/node": "^22.19.11",
+    "browserify": "^17.0.1",
+    "jest": "^30.2.0",
+    "jest-util": "^30.2.0",
+    "prettier": "^3.8.1",
+    "rimraf": "^6.1.3",
+    "ts-jest": "^29.4.6",
+    "tsify": "^5.0.4",
     "typescript": "^4.2.4"
-  },
-  "dependencies": {
-    "tsify": "^5.0.2"
   }
 }

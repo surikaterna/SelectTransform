@@ -24,7 +24,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -166,8 +166,8 @@ var Conditional = /** @class */ (function () {
             var func = internal_1.Helper.tokenize(key);
             if (func.name === '#if' || func.name === '#elseif') {
                 var expression = func.expression;
-                var res = internal_1.Helper.fillout("{{" + expression + "}}", data, false);
-                if (res === "{{" + expression + "}}") {
+                var res = internal_1.Helper.fillout("{{".concat(expression, "}}"), data, false);
+                if (res === "{{".concat(expression, "}}")) {
                     // if there was at least one item that was not evaluatable,
                     // we halt parsing and throw an error;
                     throw internal_1.ST_ERRORS.fillout;
@@ -212,8 +212,8 @@ var Conditional = /** @class */ (function () {
                         func = internal_1.Helper.tokenize(key);
                         if (!(func.name === '#if' || func.name === '#elseif')) return [3 /*break*/, 4];
                         expression = func.expression;
-                        res = internal_1.Helper.fillout("{{" + expression + "}}", data, false);
-                        if (res === "{{" + expression + "}}") {
+                        res = internal_1.Helper.fillout("{{".concat(expression, "}}"), data, false);
+                        if (res === "{{".concat(expression, "}}")) {
                             // if there was at least one item that was not evaluatable,
                             // we halt parsing and throw an error;
                             throw internal_1.ST_ERRORS.fillout;
@@ -253,7 +253,11 @@ exports.Conditional = Conditional;
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -354,7 +358,7 @@ var Helper = /** @class */ (function () {
      */
     Helper.resolve = function (o, path, newVal) {
         if (path && path.length > 0) {
-            var func = Function('new_val', "with(this) {this" + path + "=new_val; return this;}").bind(o);
+            var func = Function('new_val', "with(this) {this".concat(path, "=new_val; return this;}")).bind(o);
             return func(newVal);
         }
         o = newVal;
@@ -445,17 +449,17 @@ var Helper = /** @class */ (function () {
                 // inside another function ([^}]*$), it's a function expression
                 var match = /function\([ ]*\)[ ]*\{(.*)\}[ ]*$/g.exec(slot);
                 if (match) {
-                    func = Function("with(this) {" + match[1] + "}").bind(data);
+                    func = Function("with(this) {".concat(match[1], "}")).bind(data);
                 }
                 else if (/\breturn [^;]+;?[ ]*$/.test(slot) &&
                     /return[^}]*$/.test(slot)) {
                     // Function expression with explicit 'return' expression
-                    func = Function("with(this) {" + slot + "}").bind(data);
+                    func = Function("with(this) {".concat(slot, "}")).bind(data);
                 }
                 else {
                     // Function expression with explicit 'return' expression
                     // Ordinary simple expression that
-                    func = Function("with(this) {return (" + slot + ")}").bind(data);
+                    func = Function("with(this) {return (".concat(slot, ")}")).bind(data);
                 }
                 var evaluated = func();
                 // TODO: Do we need to do this?
@@ -512,7 +516,7 @@ var Helper = /** @class */ (function () {
             if (keepTemplate)
                 return template;
             var e = exports.ST_ERRORS.fillout;
-            e.message += " -- " + err.message;
+            e.message += " -- ".concat(err.message);
             throw e;
         }
     };
@@ -524,7 +528,11 @@ exports.Helper = Helper;
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -538,7 +546,11 @@ __createBinding(exports, internal_1, "SelectTransform");
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -576,7 +588,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -614,7 +626,7 @@ var Concat = /** @class */ (function () {
     Concat.prototype.executeSync = function (template, data, ts, key, result) {
         if (!internal_1.Helper.isArray(template[key])) {
             var err = internal_1.ST_ERRORS.format;
-            err.message += " - Wrong " + Concat.name + " format - expected an array as the value.";
+            err.message += " - Wrong ".concat(Concat.name, " format - expected an array as the value.");
             throw err;
         }
         result = [];
@@ -632,7 +644,7 @@ var Concat = /** @class */ (function () {
                     case 0:
                         if (!internal_1.Helper.isArray(template[key])) {
                             err = internal_1.ST_ERRORS.format;
-                            err.message += " - Wrong " + Concat.name + " format - expected an array as the value.";
+                            err.message += " - Wrong ".concat(Concat.name, " format - expected an array as the value.");
                             throw err;
                         }
                         promises = [];
@@ -667,7 +679,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -714,7 +726,7 @@ var Each = /** @class */ (function () {
                         // Ideally newData should be an array since it was prefixed by #each
                         if (!dataArray || !internal_1.Helper.isArray(dataArray)) {
                             err = internal_1.ST_ERRORS.data;
-                            err.message += " - Wrong " + Each.name + " data - expected an array as the iterator.";
+                            err.message += " - Wrong ".concat(Each.name, " data - expected an array as the iterator.");
                             throw err;
                         }
                         promises = [];
@@ -779,7 +791,7 @@ var Each = /** @class */ (function () {
         // Ideally newData should be an array since it was prefixed by #each
         if (!dataArray || !internal_1.Helper.isArray(dataArray)) {
             var err = internal_1.ST_ERRORS.data;
-            err.message += " - Wrong " + Each.name + " data - expected an array as the iterator.";
+            err.message += " - Wrong ".concat(Each.name, " data - expected an array as the iterator.");
             throw err;
         }
         result = [];
@@ -865,7 +877,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -972,7 +984,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -993,10 +1005,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 exports.__esModule = true;
 exports.For = void 0;
@@ -1024,7 +1040,7 @@ var For = /** @class */ (function () {
                         // Ideally newData should be an array since it was prefixed by #each
                         if (!dataArray) {
                             err = internal_1.ST_ERRORS.data;
-                            err.message += " - Wrong " + For.name + " data - expected an array as the iterator.";
+                            err.message += " - Wrong ".concat(For.name, " data - expected an array as the iterator.");
                             throw err;
                         }
                         promises = [];
@@ -1081,7 +1097,7 @@ var For = /** @class */ (function () {
                         _c = [Object];
                         _d = [[{}]];
                         return [4 /*yield*/, Promise.all(promises)];
-                    case 1: return [2 /*return*/, _b.apply(_a, _c.concat([__spreadArray.apply(void 0, _d.concat([(_e.sent())]))]))];
+                    case 1: return [2 /*return*/, _b.apply(_a, _c.concat([__spreadArray.apply(void 0, _d.concat([(_e.sent()), false]))]))];
                 }
             });
         });
@@ -1093,7 +1109,7 @@ var For = /** @class */ (function () {
         // Ideally newData should be an array since it was prefixed by #each
         if (!dataArray) {
             var err = internal_1.ST_ERRORS.data;
-            err.message += " - Wrong " + For.name + " data - expected an array as the iterator.";
+            err.message += " - Wrong ".concat(For.name, " data - expected an array as the iterator.");
             throw err;
         }
         result = [];
@@ -1161,7 +1177,11 @@ exports.For = For;
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -1215,7 +1235,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1255,7 +1275,7 @@ var Let = /** @class */ (function () {
         // Check the format
         if (!internal_1.Helper.isArray(template[key]) || template[key].length !== 2) {
             var err = internal_1.ST_ERRORS.format;
-            err.message += " - Wrong " + Let.name + " format - expected an array with two elements.";
+            err.message += " - Wrong ".concat(Let.name, " format - expected an array with two elements.");
             throw err;
         }
         var defs = template[key][0];
@@ -1295,7 +1315,7 @@ var Let = /** @class */ (function () {
                         // Check the format
                         if (!internal_1.Helper.isArray(template[key]) || template[key].length !== 2) {
                             err = internal_1.ST_ERRORS.format;
-                            err.message += " - Wrong " + Let.name + " format - expected an array with two elements.";
+                            err.message += " - Wrong ".concat(Let.name, " format - expected an array with two elements.");
                             throw err;
                         }
                         defs = template[key][0];
@@ -1351,7 +1371,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1391,7 +1411,7 @@ var Lets = /** @class */ (function () {
         // Check the format
         if (!internal_1.Helper.isArray(template[key]) || template[key].length !== 2) {
             var err = internal_1.ST_ERRORS.format;
-            err.message += " - Wrong " + Lets.name + " format - expected an array with two elements.";
+            err.message += " - Wrong ".concat(Lets.name, " format - expected an array with two elements.");
             throw err;
         }
         var defs = template[key][0];
@@ -1423,32 +1443,35 @@ var Lets = /** @class */ (function () {
     };
     Lets.prototype.execute = function (template, data, ts, key, result) {
         return __awaiter(this, void 0, void 0, function () {
-            var err, defs, realTemplate, originals, memory, _a, _b, _i, k, parsed, k;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var err, defs, realTemplate, originals, memory, _a, _b, _c, _i, k, parsed, k;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
                     case 0:
                         result = {};
                         // Check the format
                         if (!internal_1.Helper.isArray(template[key]) || template[key].length !== 2) {
                             err = internal_1.ST_ERRORS.format;
-                            err.message += " - Wrong " + Lets.name + " format - expected an array with two elements.";
+                            err.message += " - Wrong ".concat(Lets.name, " format - expected an array with two elements.");
                             throw err;
                         }
                         defs = template[key][0];
                         realTemplate = template[key][1];
                         originals = {};
                         memory = {};
-                        _a = [];
-                        for (_b in defs)
-                            _a.push(_b);
+                        _a = defs;
+                        _b = [];
+                        for (_c in _a)
+                            _b.push(_c);
                         _i = 0;
-                        _c.label = 1;
+                        _d.label = 1;
                     case 1:
-                        if (!(_i < _a.length)) return [3 /*break*/, 4];
-                        k = _a[_i];
+                        if (!(_i < _b.length)) return [3 /*break*/, 4];
+                        _c = _b[_i];
+                        if (!(_c in _a)) return [3 /*break*/, 3];
+                        k = _c;
                         return [4 /*yield*/, ts.run(defs[k], data)];
                     case 2:
-                        parsed = _c.sent();
+                        parsed = _d.sent();
                         // 2. modify the data
                         // save old
                         originals[k] = data[k];
@@ -1456,14 +1479,14 @@ var Lets = /** @class */ (function () {
                         // set new
                         data[k] = parsed;
                         ts.memory[k] = parsed;
-                        _c.label = 3;
+                        _d.label = 3;
                     case 3:
                         _i++;
                         return [3 /*break*/, 1];
                     case 4: return [4 /*yield*/, ts.run(realTemplate, data)];
                     case 5:
                         // 3. Pass it into TRANSFORM.run
-                        result = _c.sent();
+                        result = _d.sent();
                         // 4. Remove the data from memory
                         // tslint:disable-next-line: forin
                         for (k in defs) {
@@ -1497,7 +1520,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1518,10 +1541,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 exports.__esModule = true;
 exports.Merge = void 0;
@@ -1540,7 +1567,7 @@ var Merge = /** @class */ (function () {
     Merge.prototype.executeSync = function (template, data, ts, key, result) {
         if (!internal_1.Helper.isArray(template[key])) {
             var err = internal_1.ST_ERRORS.format;
-            err.message += " - Wrong " + Merge.name + " format - expected an array as the value.";
+            err.message += " - Wrong ".concat(Merge.name, " format - expected an array as the value.");
             throw err;
         }
         // Merge all sub-objects
@@ -1573,7 +1600,7 @@ var Merge = /** @class */ (function () {
                     case 0:
                         if (!internal_1.Helper.isArray(template[key])) {
                             err = internal_1.ST_ERRORS.format;
-                            err.message += " - Wrong " + Merge.name + " format - expected an array as the value.";
+                            err.message += " - Wrong ".concat(Merge.name, " format - expected an array as the value.");
                             throw err;
                         }
                         // Merge all sub-objects
@@ -1588,7 +1615,7 @@ var Merge = /** @class */ (function () {
                         _e = [[result]];
                         return [4 /*yield*/, Promise.all(promises)];
                     case 1:
-                        _c.apply(_b, _d.concat([__spreadArray.apply(void 0, _e.concat([(_f.sent())]))]));
+                        _c.apply(_b, _d.concat([__spreadArray.apply(void 0, _e.concat([(_f.sent()), false]))]));
                         // clean up $index from the result
                         // necessary because #merge merges multiple objects into one,
                         // and one of them may be 'this', in which case the $index attribute
@@ -1622,7 +1649,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1723,7 +1750,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1761,7 +1788,7 @@ var Unwrap = /** @class */ (function () {
     Unwrap.prototype.executeSync = function (template, data, ts, key, result) {
         if (typeof template[key] !== 'object') {
             var err = internal_1.ST_ERRORS.format;
-            err.message += " - Wrong " + Unwrap.name + " format - expected an object as the value.";
+            err.message += " - Wrong ".concat(Unwrap.name, " format - expected an object as the value.");
             throw err;
         }
         var fun = internal_1.Helper.tokenize(key);
@@ -1787,7 +1814,7 @@ var Unwrap = /** @class */ (function () {
                     case 0:
                         if (typeof template[key] !== 'object') {
                             err = internal_1.ST_ERRORS.format;
-                            err.message += " - Wrong " + Unwrap.name + " format - expected an object as the value.";
+                            err.message += " - Wrong ".concat(Unwrap.name, " format - expected an object as the value.");
                             throw err;
                         }
                         fun = internal_1.Helper.tokenize(key);
@@ -1831,7 +1858,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1880,12 +1907,12 @@ var Select = /** @class */ (function () {
         if (Array.isArray(this.$selectedRoot)) {
             return Object.keys(this.$selectedRoot).map(function (item) {
                 // key is integer
-                return "[" + item + "]";
+                return "[".concat(item, "]");
             });
         }
         return Object.keys(this.$selectedRoot).map(function (item) {
             // key is string
-            return "[" + item + "]";
+            return "[".concat(item, "]");
         });
     };
     Select.prototype.keys = function () {
@@ -2251,7 +2278,7 @@ var Select = /** @class */ (function () {
         }
         if (internal_1.Helper.isArray(current)) {
             for (var i = 0; i < current.length; i++) {
-                this.exec(current[i], path + "[" + i + "]", filter);
+                this.exec(current[i], "".concat(path, "[").concat(i, "]"), filter);
             }
             return;
         }
@@ -2270,7 +2297,7 @@ var Select = /** @class */ (function () {
                         value: current[key]
                     });
                 }
-                this.exec(current[key], path + "[\"" + key + "\"]", filter);
+                this.exec(current[key], "".concat(path, "[\"").concat(key, "\"]"), filter);
             }
         }
     };
@@ -2371,7 +2398,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -2498,7 +2525,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -2553,7 +2580,7 @@ var Transform = /** @class */ (function () {
                     return internal_1.Helper.fillout(template, data, false, this.st.keepTemplate);
                 }
                 catch (error) {
-                    error.message += " -- " + template;
+                    error.message += " -- ".concat(template);
                     throw error;
                 }
             }
@@ -2608,7 +2635,7 @@ var Transform = /** @class */ (function () {
                             result[newKey] = newValue;
                         }
                         catch (error) {
-                            error.message += " -- " + key;
+                            error.message += " -- ".concat(key);
                             throw error;
                         }
                     }
@@ -2653,7 +2680,7 @@ var Transform = /** @class */ (function () {
                             return [2 /*return*/, internal_1.Helper.fillout(template, data, false, this.st.keepTemplate)];
                         }
                         catch (error) {
-                            error.message += " -- " + template;
+                            error.message += " -- ".concat(template);
                             throw error;
                         }
                         _b.label = 5;
@@ -2745,7 +2772,7 @@ var Transform = /** @class */ (function () {
                                             return [2 /*return*/];
                                         case 8:
                                             error_3 = _c.sent();
-                                            error_3.message += " -- " + key;
+                                            error_3.message += " -- ".concat(key);
                                             throw error_3;
                                         case 9: return [3 /*break*/, 11];
                                         case 10:
@@ -2779,7 +2806,7 @@ var Transform = /** @class */ (function () {
 exports.Transform = Transform;
 function throwDuplicateKeyError(newKey) {
     throw new Error("While replacing a templated key in object, found that " +
-        ("the target key already exists. -- resolved key: " + newKey));
+        "the target key already exists. -- resolved key: ".concat(newKey));
 }
 
 },{"./internal":7}],22:[function(require,module,exports){
@@ -2799,7 +2826,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -2838,7 +2865,7 @@ var Include = /** @class */ (function () {
         var fun = internal_1.Helper.tokenize(template);
         if (fun.expression) {
             // if #include has arguments, evaluate it before attaching
-            return internal_1.Helper.fillout("{{" + fun.expression + "}", data, true);
+            return internal_1.Helper.fillout("{{".concat(fun.expression, "}"), data, true);
         }
         // shouldn't happen =>
         // {'wrapper': '{{#include}}'}
@@ -2851,7 +2878,7 @@ var Include = /** @class */ (function () {
                 fun = internal_1.Helper.tokenize(template);
                 if (fun.expression) {
                     // if #include has arguments, evaluate it before attaching
-                    return [2 /*return*/, internal_1.Helper.fillout("{{" + fun.expression + "}", data, true)];
+                    return [2 /*return*/, internal_1.Helper.fillout("{{".concat(fun.expression, "}"), data, true)];
                 }
                 // shouldn't happen =>
                 // {'wrapper': '{{#include}}'}
@@ -2867,7 +2894,11 @@ exports.Include = Include;
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -2907,7 +2938,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -2983,7 +3014,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -3020,8 +3051,8 @@ var Ternary = /** @class */ (function () {
     };
     Ternary.prototype.executeSync = function (template, data, ts) {
         var fun = internal_1.Helper.tokenize(template);
-        var filled = internal_1.Helper.fillout("{{" + fun.expression + "}}", data, false, true);
-        if (filled === undefined || filled === "{{" + fun.expression + "}}") {
+        var filled = internal_1.Helper.fillout("{{".concat(fun.expression, "}}"), data, false, true);
+        if (filled === undefined || filled === "{{".concat(fun.expression, "}}")) {
             // case 1.
             // not parsed, which means the evaluation failed.
             // case 2.
@@ -3039,8 +3070,8 @@ var Ternary = /** @class */ (function () {
             var fun, filled;
             return __generator(this, function (_a) {
                 fun = internal_1.Helper.tokenize(template);
-                filled = internal_1.Helper.fillout("{{" + fun.expression + "}}", data, false, true);
-                if (!filled || filled === "{{" + fun.expression + "}}") {
+                filled = internal_1.Helper.fillout("{{".concat(fun.expression, "}}"), data, false, true);
+                if (!filled || filled === "{{".concat(fun.expression, "}}")) {
                     // case 1.
                     // not parsed, which means the evaluation failed.
                     // case 2.
